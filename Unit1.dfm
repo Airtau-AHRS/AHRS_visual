@@ -265,7 +265,7 @@ object FormAHRS: TFormAHRS
   object LogAllowed: TCheckBox
     Left = 440
     Top = 32
-    Width = 97
+    Width = 81
     Height = 17
     Caption = 'Log Allowed'
     TabOrder = 11
