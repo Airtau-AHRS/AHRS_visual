@@ -18,9 +18,8 @@ type
     SpeedButtonMonGYRO: TSpeedButton;
     SpeedButtonMonBARO: TSpeedButton;
     SpeedButtonMonOFF: TSpeedButton;
-    SpeedButtonSetREF: TSpeedButton;
-    SpeedButtonSetREF1: TSpeedButton;
-    SpeedButtonConfig: TSpeedButton;
+    SpeedButtonSaveConfig: TSpeedButton;
+    SpeedButtonResetREF: TSpeedButton;
     SpeedButtonCalMag: TSpeedButton;
     SpeedButtonSetMag: TSpeedButton;
     SpeedButtonResetYAW: TSpeedButton;
@@ -40,11 +39,12 @@ type
     CheckBox5: TCheckBox;
     EditSendCmd: TEdit;
     LogAllowed: TCheckBox;
+    SpeedButtonMonGPS: TSpeedButton;
     procedure ComPortRxChar(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBoxDeviceNameChange(Sender: TObject);
 
-    procedure SpeedButtonConfigClick(Sender: TObject);
+    procedure SpeedButtonMonGPSClick(Sender: TObject);
     procedure SpeedButtonOpenCloseClick(Sender: TObject);
 
 
@@ -56,13 +56,15 @@ type
 
     procedure SpeedButtonMonEKFClick(Sender: TObject);
     procedure SpeedButtonMonOFFClick(Sender: TObject);
-    procedure SpeedButtonSetREFClick(Sender: TObject);
+    procedure SpeedButtonSaveConfigClick(Sender: TObject);
 
     procedure SpeedButtonCalGYROClick(Sender: TObject);
     procedure SpeedButtonMonGYROClick(Sender: TObject);
     procedure SpeedButtonMonBAROClick(Sender: TObject);
 
     procedure SpeedButtonCalMagClick(Sender: TObject);
+    procedure SpeedButtonResetRefClick(Sender: TObject);
+
     procedure Timer1Timer(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -75,6 +77,7 @@ type
     procedure CheckBox4Click(Sender: TObject);
     procedure SpeedButtonMonACCClick(Sender: TObject);
     procedure SpeedButtonSendCMDClick(Sender: TObject);
+    procedure SpeedButtonSetMAGClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -299,17 +302,17 @@ begin
       ComboBoxDeviceName.Enabled := not Active;
       SpeedButtonCalMag.Enabled := Active;
       SpeedButtonCalGYRO.Enabled := Active;
-      SpeedButtonSetREF.Enabled := Active;
+      SpeedButtonResetREF.Enabled := Active;
       SpeedButtonMonEKF.Enabled := Active;
       SpeedButtonMonGYRO.Enabled := Active;
       SpeedButtonMonBARO.Enabled := Active;
       SpeedButtonMonOFF.Enabled := Active;
-      SpeedButtonSetREF.Enabled := Active;
-      SpeedButtonSetREF1.Enabled := Active;
+      SpeedButtonSaveConfig.Enabled := Active;
       SpeedButtonSetMag.Enabled := Active;
       SpeedButtonSendCMD.Enabled := Active;
       SpeedButtonResetYAW.Enabled := Active;
       SpeedButtonMonACC.Enabled := Active;
+      SpeedButtonMonGPS.Enabled := Active;
       EditSendCmd.Enabled := Active;
       CheckBox1.Enabled := Active;
       CheckBox2.Enabled := Active;
@@ -333,9 +336,9 @@ begin
   UpdateComInfo;
 end;
 
-procedure TFormAHRS.SpeedButtonConfigClick(Sender: TObject);
+procedure TFormAHRS.SpeedButtonMonGPSClick(Sender: TObject);
 begin
-  ComPort.ConfigDialog;
+  ComPort.WriteString('mon on GPS' + #13#10);
 end;
 
 procedure TFormAHRS.SpeedButtonMonEKFClick(Sender: TObject);
@@ -368,7 +371,13 @@ begin
   ComPort.WriteString('mon on baro' + #13#10);
 end;
 
-procedure TFormAHRS.SpeedButtonSetREFClick(Sender: TObject);
+procedure TFormAHRS.SpeedButtonSaveConfigClick(Sender: TObject);
+begin
+  ComPort.WriteString('save ref' + #13#10);
+  ComPort.WriteString('save config' + #13#10);
+end;
+
+procedure TFormAHRS.SpeedButtonResetRefClick(Sender: TObject);
 begin
   ComPort.WriteString('save ref' + #13#10);
 end;
@@ -511,5 +520,11 @@ begin
   ComPort.WriteString(EditSendCmd.Text + #13#10);
 end;
 
+procedure TFormAHRS.SpeedButtonSetMAGClick(Sender: TObject);
+begin
+  ComPort.WriteString('cal mag_save' + #13#10);
+end;
+
 end.
+*/
 

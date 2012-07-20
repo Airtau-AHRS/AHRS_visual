@@ -19,17 +19,9 @@ object FormAHRS: TFormAHRS
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object SpeedButtonConfig: TSpeedButton
-    Left = 8
-    Top = 36
-    Width = 121
-    Height = 25
-    Caption = 'Config ...'
-    OnClick = SpeedButtonConfigClick
-  end
   object SpeedButtonOpenClose: TSpeedButton
     Left = 8
-    Top = 72
+    Top = 40
     Width = 121
     Height = 25
     Caption = 'Connect'
@@ -86,10 +78,10 @@ object FormAHRS: TFormAHRS
   end
   object PageControl1: TPageControl
     Left = 0
-    Top = 112
+    Top = 80
     Width = 137
-    Height = 361
-    ActivePage = TabSheet1
+    Height = 393
+    ActivePage = TabSheet2
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = 'Calibrate'
@@ -118,15 +110,16 @@ object FormAHRS: TFormAHRS
         Height = 24
         Caption = 'Save MAG'
         Enabled = False
+        OnClick = SpeedButtonSetMAGClick
       end
-      object SpeedButtonSetREF: TSpeedButton
+      object SpeedButtonSaveConfig: TSpeedButton
         Left = 16
         Top = 296
         Width = 90
         Height = 24
-        Caption = 'Save REF'
+        Caption = 'Save Config'
         Enabled = False
-        OnClick = SpeedButtonSetREFClick
+        OnClick = SpeedButtonSaveConfigClick
       end
     end
     object TabSheet2: TTabSheet
@@ -149,15 +142,6 @@ object FormAHRS: TFormAHRS
         Enabled = False
         OnClick = SpeedButtonMonGYROClick
       end
-      object SpeedButtonMonOFF: TSpeedButton
-        Left = 16
-        Top = 164
-        Width = 90
-        Height = 24
-        Caption = 'STOP monitoring'
-        Enabled = False
-        OnClick = SpeedButtonMonOFFClick
-      end
       object SpeedButtonMonBARO: TSpeedButton
         Left = 16
         Top = 82
@@ -176,6 +160,24 @@ object FormAHRS: TFormAHRS
         Enabled = False
         OnClick = SpeedButtonMonACCClick
       end
+      object SpeedButtonMonGPS: TSpeedButton
+        Left = 16
+        Top = 142
+        Width = 90
+        Height = 24
+        Caption = 'monitoring GPS'
+        Enabled = False
+        OnClick = SpeedButtonMonGPSClick
+      end
+      object SpeedButtonMonOFF: TSpeedButton
+        Left = 16
+        Top = 188
+        Width = 90
+        Height = 24
+        Caption = 'STOP monitoring'
+        Enabled = False
+        OnClick = SpeedButtonMonOFFClick
+      end
       object SpeedButtonResetYAW: TSpeedButton
         Left = 16
         Top = 264
@@ -185,14 +187,14 @@ object FormAHRS: TFormAHRS
         Enabled = False
         OnClick = SpeedButtonResetYAWClick
       end
-      object SpeedButtonSetREF1: TSpeedButton
+      object SpeedButtonResetREF: TSpeedButton
         Left = 16
         Top = 296
         Width = 90
         Height = 24
-        Caption = 'Save REF'
+        Caption = 'Reset REF'
         Enabled = False
-        OnClick = SpeedButtonSetREFClick
+        OnClick = SpeedButtonResetRefClick
       end
     end
   end
